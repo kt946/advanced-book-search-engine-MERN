@@ -63,10 +63,26 @@ const resolvers = {
     saveBook: async (parent, { input }, context) => {
       // check if context.user exists, if not, throw authentication error
       if (context.user) {
-        // find user by id and update user's savedBooks array
+        // find user by id and add book to savedBooks array from input
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
           { $addToSet: { savedBooks: input } },
+          { new: true }
+        ).populate('savedBooks');
+
+        return updatedUser;
+      }
+
+      throw new AuthenticationError('You need to be logged in!');
+    },
+      // mutation that accepts a book's bookId to remove book from user's savedBooks array, returns User
+    removeBook: async (parent, { bookId }, context) => {
+      // check if context.user exists, if not, throw authentication error
+      if (context.user) {
+        // find user by id and remove book from savedBooks array by bookId
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { savedBooks: { bookId: bookId } } },
           { new: true }
         ).populate('savedBooks');
 
