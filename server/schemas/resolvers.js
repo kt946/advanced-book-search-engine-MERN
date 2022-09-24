@@ -58,7 +58,23 @@ const resolvers = {
       const token = signToken(user);
       // return token and user
       return { token, user };
-    }
+    },
+    // mutation that accepts book's id, author, description, title, image, and link as parameters, returns User
+    saveBook: async (parent, { input }, context) => {
+      // check if context.user exists, if not, throw authentication error
+      if (context.user) {
+        // find user by id and update user's savedBooks array
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { savedBooks: input } },
+          { new: true }
+        ).populate('savedBooks');
+
+        return updatedUser;
+      }
+
+      throw new AuthenticationError('You need to be logged in!');
+    },
   }
 };
 
