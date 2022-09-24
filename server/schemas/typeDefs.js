@@ -10,6 +10,25 @@ const typeDefs = gql`
     bookCount: Int
     savedBooks: [Book]
   }
+
+  type Book {
+    bookId: ID
+    authors: [String]
+    description: String
+    title: String
+    image: String
+    link: String
+  }
+
+  type Auth {
+    token: ID!
+    user: User
+  }
+
+  type Query {
+    me: User
+    user(username: String!): User
+  }
 `;
 
 // export the typeDefs
