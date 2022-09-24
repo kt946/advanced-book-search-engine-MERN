@@ -27,7 +27,7 @@ const resolvers = {
   },
 
   Mutation: {
-    // mutation to add user, returns token and user
+    // mutation to add new user, returns token and user
     addUser: async (parent, args) => {
       // create user from arguments (username, email, password)
       const user = await User.create(args);
@@ -75,7 +75,7 @@ const resolvers = {
 
       throw new AuthenticationError('You need to be logged in!');
     },
-      // mutation that accepts a book's bookId to remove book from user's savedBooks array, returns User
+    // mutation that accepts a book's bookId to remove book from user's savedBooks array, returns User
     removeBook: async (parent, { bookId }, context) => {
       // check if context.user exists, if not, throw authentication error
       if (context.user) {
@@ -90,7 +90,7 @@ const resolvers = {
       }
 
       throw new AuthenticationError('You need to be logged in!');
-    },
+    }
   }
 };
 
