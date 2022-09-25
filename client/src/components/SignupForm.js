@@ -17,7 +17,7 @@ const SignupForm = () => {
   const [showAlert, setShowAlert] = useState(false);
   
   // initialize ADD_USER mutation with the useMutation() Hook
-  const [addUser, { error }] = useMutation(ADD_USER);
+  const [addUser] = useMutation(ADD_USER);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -59,7 +59,7 @@ const SignupForm = () => {
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
         {/* show alert if server response is bad */}
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
-          {error && 'Something went wrong with your signup!'}
+          Something went wrong with your signup!
         </Alert>
 
         <Form.Group>

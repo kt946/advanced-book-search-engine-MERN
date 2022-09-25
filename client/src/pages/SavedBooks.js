@@ -14,12 +14,12 @@ import { REMOVE_BOOK } from '../utils/mutations';
 const SavedBooks = () => {
   // initialize GET_ME query with the useQuery() Hook
   const { loading, data } = useQuery(GET_ME);
-
-  // initialize REMOVE_BOOK mutation with the useMutation() Hook
-  const [removeBook, { error }] = useMutation(REMOVE_BOOK);
-
+  
   // save data.me to userData variable
   const userData = data?.me || {};
+
+  // initialize REMOVE_BOOK mutation with the useMutation() Hook
+  const [removeBook] = useMutation(REMOVE_BOOK);
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
   const handleDeleteBook = async (bookId) => {
@@ -34,12 +34,12 @@ const SavedBooks = () => {
       const { data } = await removeBook({
         variables: { bookId }
       });
+      console.log(data);
 
       // upon success, remove book's id from localStorage
-      removeBookId(data.bookId);
+      removeBookId(bookId);
     } catch (err) {
       console.error(err);
-      console.log(error);
     }
   };
 
