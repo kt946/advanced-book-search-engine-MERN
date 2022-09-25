@@ -39,6 +39,14 @@ To use this application, navigate to the Links section and click on the link to 
 
 The following images demonstrate the application's appearance and functionality.
 
+![search-page](https://user-images.githubusercontent.com/103476893/192128412-a858a6be-4253-4753-863b-c442fcfaf342.png)
+
+![login-signup-modal](https://user-images.githubusercontent.com/103476893/192128417-17e1627f-1097-4d90-822e-a9ebb8650247.png)
+
+![search-results](https://user-images.githubusercontent.com/103476893/192128420-fa633195-88f0-41ba-87f1-9792091cf54a.png)
+
+![saved-books](https://user-images.githubusercontent.com/103476893/192128422-364c9461-913a-4b1f-a227-e4b6805872cf.png)
+
 ## Technologies Used
 
 - MERN
