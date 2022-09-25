@@ -9,15 +9,15 @@ import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
 
 const SignupForm = () => {
-  // returns addUser function
-  const [addUser, { error }] = useMutation(ADD_USER);
-
   // set initial form state
   const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
   // set state for form validation
   const [validated] = useState(false);
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
+  
+  // initialize ADD_USER mutation with the useMutation() Hook
+  const [addUser, { error }] = useMutation(ADD_USER);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -35,8 +35,9 @@ const SignupForm = () => {
     }
 
     try {
+      // execute addUser mutation and pass in variable data from form
       const { data } = await addUser({
-        variables: { ...userFormData },
+        variables: { ...userFormData }
       });
 
       Auth.login(data.addUser.token);
