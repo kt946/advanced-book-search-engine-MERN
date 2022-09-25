@@ -60,13 +60,13 @@ const resolvers = {
       return { token, user };
     },
     // mutation that accepts book's id, author, description, title, image, and link as parameters, returns User
-    saveBook: async (parent, { input }, context) => {
+    saveBook: async (parent, { saveBookData }, context) => {
       // check if context.user exists, if not, throw authentication error
       if (context.user) {
         // find user by id and add book to savedBooks array from input
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { savedBooks: input } },
+          { $addToSet: { savedBooks: saveBookData } },
           { new: true }
         ).populate('savedBooks');
 
