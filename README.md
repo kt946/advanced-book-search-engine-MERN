@@ -60,7 +60,7 @@ The following images demonstrate the application's appearance and functionality.
 
 ## Links
 
-- [Link to deployed application on Heroku]()
+- [Link to deployed application on Heroku](https://book-search-engine-64871.herokuapp.com/)
 
 - [Link to GitHub repository](https://github.com/kt946/advanced-book-search-engine-MERN)
 
